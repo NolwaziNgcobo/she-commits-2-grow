@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Report Is Ready — SheCommits2Grow</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main>
+    <h1>Your report has been generated</h1>
+
+    <section class="card">
+      <h2>Recommended next steps</h2>
+      <p class="urgency urgency-{{ guidance.urgency }}">Urgency: {{ guidance.urgency|upper }}</p>
+      <ol>
+        {% for step in guidance.steps %}
+          <li>{{ step }}</li>
+        {% endfor %}
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>Evidence check</h2>
+      <ul>
+        <li>File: {{ image_check.filename }}</li>
+        <li>Dimensions: {{ image_check.dimensions }}</li>
+        <li>EXIF metadata present: {{ image_check.has_exif }}</li>
+      </ul>
+      {% if image_check.warnings %}
+        <p><strong>Notes:</strong></p>
+        <ul>
+          {% for w in image_check.warnings %}
+            <li>{{ w }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </section>
+
+    <a class="download-btn" href="/download/{{ pdf_filename }}">Download PDF report</a>
+    <a class="back-link" href="/">Document another incident</a>
+  </main>
+</body>
+</html>

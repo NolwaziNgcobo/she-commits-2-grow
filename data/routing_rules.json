@@ -1,0 +1,65 @@
+{
+  "image_based_abuse": {
+    "label": "Image-based abuse (non-consensual intimate images, threats to share)",
+    "urgency": "high",
+    "steps": [
+      "Report immediately to the platform where the image was shared or threatened (use their 'non-consensual intimate imagery' reporting category if available).",
+      "Report to SAPS - this is a criminal offence under the Films and Publications Act and the Cybercrimes Act in South Africa.",
+      "Keep the original threat message, sender's account details, and timestamps - do not delete anything, even if it's upsetting."
+    ]
+  },
+  "cyberstalking": {
+    "label": "Cyberstalking (repeated unwanted contact, tracking, monitoring)",
+    "urgency": "high",
+    "steps": [
+      "Document a pattern over time - a single message is rarely enough, log each incident with date and time.",
+      "Report to SAPS, especially if the person has shown up in person or knows your location.",
+      "Report the account(s) to the platform for harassment/stalking."
+    ]
+  },
+  "doxxing": {
+    "label": "Doxxing (private information shared publicly)",
+    "urgency": "high",
+    "steps": [
+      "Screenshot the original post before it can be edited or deleted.",
+      "Report to the platform for 'sharing private information' or 'doxxing'.",
+      "If it leads to threats or people showing up at your location, report to SAPS immediately."
+    ]
+  },
+  "impersonation": {
+    "label": "Impersonation (fake account using your name/photos)",
+    "urgency": "medium",
+    "steps": [
+      "Screenshot the fake profile including the URL/handle.",
+      "Report to the platform's impersonation reporting form - most require proof of your real identity.",
+      "Warn contacts who may be targeted by the fake account."
+    ]
+  },
+  "coordinated_harassment": {
+    "label": "Coordinated harassment / pile-on",
+    "urgency": "medium",
+    "steps": [
+      "Screenshot a representative sample of the abusive messages/comments, not every single one.",
+      "Report the ringleader account(s) and use mass-reporting tools if the platform offers them.",
+      "Consider temporarily locking your account while reporting is processed."
+    ]
+  },
+  "sextortion": {
+    "label": "Sextortion (threats to release images unless paid or more content sent)",
+    "urgency": "high",
+    "steps": [
+      "Do not pay and do not send more content - this rarely stops the threat.",
+      "Report to SAPS immediately - this is a criminal offence.",
+      "Report to the platform and preserve all payment demands/threats as evidence."
+    ]
+  },
+  "threats_of_violence": {
+    "label": "Threats of violence",
+    "urgency": "high",
+    "steps": [
+      "Report to SAPS immediately, especially if the threat is specific or includes a time/place.",
+      "Report to the platform for a direct threat violation.",
+      "Tell someone you trust where you are and what's happening."
+    ]
+  }
+}

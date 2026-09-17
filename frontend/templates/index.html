@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SheCommits2Grow — Report an Incident</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main>
+    <h1>Document an Online Incident</h1>
+    <p class="subtitle">
+      Everything here stays private and is used only to build your report.
+      Fill in what you can — you don't need every detail.
+    </p>
+
+    <form action="/submit" method="POST" enctype="multipart/form-data">
+      <label for="reporter_name">Your name (optional — leave blank to stay anonymous)</label>
+      <input type="text" id="reporter_name" name="reporter_name" placeholder="Anonymous">
+
+      <label for="platform">Where did this happen?</label>
+      <input type="text" id="platform" name="platform" placeholder="e.g. Instagram, WhatsApp, X" required>
+
+      <label for="incident_date">When did it happen?</label>
+      <input type="date" id="incident_date" name="incident_date" required>
+
+      <label for="incident_type">What type of incident is this?</label>
+      <select id="incident_type" name="incident_type" required>
+        <option value="" disabled selected>Select the closest match</option>
+        {% for key, label in incident_types.items() %}
+          <option value="{{ key }}">{{ label }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="description">What happened?</label>
+      <textarea id="description" name="description" rows="5" placeholder="Describe the incident in your own words." required></textarea>
+
+      <label for="screenshot">Upload a screenshot</label>
+      <input type="file" id="screenshot" name="screenshot" accept="image/*">
+
+      <button type="submit">Generate my report</button>
+    </form>
+  </main>
+</body>
+</html>
