@@ -34,8 +34,16 @@
       <label for="description">What happened?</label>
       <textarea id="description" name="description" rows="5" placeholder="Describe the incident in your own words." required></textarea>
 
-      <label for="screenshot">Upload a screenshot</label>
-      <input type="file" id="screenshot" name="screenshot" accept="image/*">
+      <label for="screenshots">Upload screenshots</label>
+      <input
+        type="file"
+        id="screenshots"
+        name="screenshots"
+        accept="image/*"
+        multiple
+      >
+
+      <small>You can upload up to 10 screenshots.</small>
 
       <button type="submit">Generate my report</button>
     </form>
