@@ -14,8 +14,19 @@ If there's time left after the core flow works, good next steps:
 """
 
 import os
+import hashlib
 from PIL import Image
 from PIL.ExifTags import TAGS
+
+
+def calculate_sha256(file_path: str) -> str:
+    sha256 = hashlib.sha256()
+
+    with open(file_path, "rb") as file:
+        for chunk in iter(lambda: file.read(4096), b""):
+            sha256.update(chunk)
+
+    return sha256.hexdigest()
 
 
 def check_image(file_path: str) -> dict:
@@ -31,12 +42,13 @@ def check_image(file_path: str) -> dict:
     """
     warnings = []
     result = {
-        "filename": os.path.basename(file_path),
-        "size_bytes": os.path.getsize(file_path),
-        "dimensions": None,
-        "has_exif": False,
-        "warnings": warnings,
-    }
+    "filename": os.path.basename(file_path),
+    "size_bytes": os.path.getsize(file_path),
+    "dimensions": None,
+    "has_exif": False,
+    "sha256": calculate_sha256(file_path),
+    "warnings": warnings,
+}
 
     if result["size_bytes"] == 0:
         warnings.append("File is empty - upload may have failed.")

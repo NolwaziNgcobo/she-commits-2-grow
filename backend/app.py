@@ -51,7 +51,13 @@ def submit():
     guidance = get_guidance(incident_type)
 
     # Save uploaded screenshot (if provided) and run the metadata check
-    image_check = {"filename": "-", "dimensions": None, "has_exif": False, "warnings": []}
+    image_check = {
+        "filename": "-",
+        "dimensions": None,
+        "has_exif": False,
+        "sha256": "-",
+        "warnings": []
+    }
     if screenshot and screenshot.filename:
         safe_name = screenshot.filename.replace(" ", "_")
         upload_path = os.path.join(UPLOAD_DIR, safe_name)
