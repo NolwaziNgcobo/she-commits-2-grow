@@ -99,6 +99,8 @@ def generate_report(case: dict, image_check: dict, guidance: dict) -> str:
     _line(pdf, f"File: {image_check.get('filename', '-')}")
     _line(pdf, f"Dimensions: {image_check.get('dimensions', '-')}")
     _line(pdf, f"EXIF metadata present: {image_check.get('has_exif', False)}")
+    _line(pdf, f"SHA-256 fingerprint: {image_check.get('sha256', '-')}")
+    _line(pdf, f"Evidence fingerprint (SHA-256): {image_check.get('sha256', '-')}")
     if image_check.get("warnings"):
         _line(pdf, "Warnings:", bold=True)
         for w in image_check["warnings"]:
