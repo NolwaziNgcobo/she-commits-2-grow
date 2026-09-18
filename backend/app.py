@@ -46,34 +46,19 @@ def submit():
     incident_date = request.form.get("incident_date", "").strip()
     incident_type = request.form.get("incident_type", "").strip()
     description = request.form.get("description", "").strip()
-    screenshots = request.files.getlist("screenshots")
-    
-    if len(screenshots) > 10:
-        return "You can upload a maximum of 10 screenshots.", 400
+    screenshot = request.files.get("screenshot")
 
     guidance = get_guidance(incident_type)
 
     # Save uploaded screenshot (if provided) and run the metadata check
-    image_checks = []
-
-    for screenshot in screenshots:
-        if screenshot and screenshot.filename:
-            safe_name = screenshot.filename.replace(" ", "_")
-            upload_path = os.path.join(UPLOAD_DIR, safe_name)
-
-            screenshot.save(upload_path)
-
-            image_check = check_image(upload_path)
-            image_checks.append(image_check)
-
-    if not image_checks:
-        image_checks.append({
-            "filename": "-",
-            "dimensions": None,
-            "has_exif": False,
-            "sha256": "-",
-            "warnings": ["No screenshot was uploaded."]
-        })
+    image_check = {"filename": "-", "dimensions": None, "has_exif": False, "warnings": []}
+    if screenshot and screenshot.filename:
+        safe_name = screenshot.filename.replace(" ", "_")
+        upload_path = os.path.join(UPLOAD_DIR, safe_name)
+        screenshot.save(upload_path)
+        image_check = check_image(upload_path)
+    else:
+        image_check["warnings"].append("No screenshot was uploaded.")
 
     case = {
         "reporter_name": reporter_name,
@@ -83,7 +68,7 @@ def submit():
         "description": description,
     }
 
-    pdf_path = generate_report(case, image_checks, guidance)
+    pdf_path = generate_report(case, image_check, guidance)
     pdf_filename = os.path.basename(pdf_path)
 
     return render_template(

@@ -18,7 +18,6 @@ import hashlib
 from PIL import Image
 from PIL.ExifTags import TAGS
 
-
 def calculate_sha256(file_path: str) -> str:
     sha256 = hashlib.sha256()
 
@@ -42,13 +41,12 @@ def check_image(file_path: str) -> dict:
     """
     warnings = []
     result = {
-    "filename": os.path.basename(file_path),
-    "size_bytes": os.path.getsize(file_path),
-    "dimensions": None,
-    "has_exif": False,
-    "sha256": calculate_sha256(file_path),
-    "warnings": warnings,
-}
+        "filename": os.path.basename(file_path),
+        "size_bytes": os.path.getsize(file_path),
+        "dimensions": None,
+        "has_exif": False,
+        "warnings": warnings,
+    }
 
     if result["size_bytes"] == 0:
         warnings.append("File is empty - upload may have failed.")
